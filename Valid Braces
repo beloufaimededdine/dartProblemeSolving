@@ -1,0 +1,73 @@
+class stack {
+  var item = Map() ;
+  int top = -1 ;
+
+  bool isEmpty() {
+    return top < 0 ;
+  }
+  void push(var val){
+    top ++ ;
+    item[top] = val ;
+  }
+  void pop(){
+    if (!isEmpty()){
+      top-- ;}
+    else {print ('can not pop stack is empty');}
+  }
+  printer (){
+
+    for (int i = top ; i >= 0 ; i--){
+
+      print(item[i]);
+    }
+
+  }
+  topVal(){
+
+    return item[top] ;
+  }
+}
+bool pair ( String o , String c ){
+  if ( o == '{' && c == '}'){return true ;}
+  else if ( o == '(' && c == ')'){return true ;}
+  else if ( o == '[' && c == ']'){return true ;}
+   return false ;
+}
+bool validBraces(String braces) {
+
+  int i ;
+var openBraces = stack() ;
+  for (i = 0 ; i < braces.length ; i++) {
+
+    if ( braces[i] == '{' || braces[i] == '[' || braces[i] == '(' ){
+      openBraces.push(braces[i]);
+    }
+    if ( braces[i] == '}' || braces[i] == ']' || braces[i] == ')' ){
+      if (openBraces.isEmpty()){
+
+        return false ; }
+      if (pair(openBraces.topVal(), braces[i]) == false ) {    return false ;}
+
+    openBraces.pop();
+    }
+
+  }
+  if (openBraces.isEmpty()){
+    return true ;}
+  else {
+    return false ;}
+
+}
+void main() {
+ 
+    validBraces( "(){}[]"  ));
+    validBraces( "([{}])" );
+}
+"(){}[]"   =>  True
+"([{}])"   =>  True
+"(}"       =>  False
+"[(])"     =>  False
+"[({})](]" =>  False
+
+
+
