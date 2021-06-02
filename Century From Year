@@ -1,6 +1,0 @@
-int century(int year) =>  year%100 == 0  ?  year ~/ 100 :  (year ~/ 100)+1;
-main {
-int century(2021) ;
-}
-
-====> 21 
